@@ -1,0 +1,7 @@
+<h1><%= @category.title %></h1>
+
+<p><strong>Title:</strong> <%= @category.title %></p>
+<p><strong>Description:</strong> <%= @category.description %></p>
+
+<%= link_to 'Edit', edit_admin_category_path(@category), class: 'btn btn-warning' %>
+<%= link_to 'Back', admin_categories_path, class: 'btn btn-primary' %>

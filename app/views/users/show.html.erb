@@ -1,0 +1,38 @@
+
+<% content_for :title, "Профіль користувача #{@user.username}" %>
+
+<div class="box-block mb-20">
+    <div class="user-info">
+        <% if @user.avatar.url %>
+            <%= image_tag @user.avatar.url, width: '70px', class: 'user-avatar' %>
+        <% end %>
+        <div class="user-info-meta">
+            <b><%= @user.username %></b><br>
+            Зарєєстрований <%= time_ago_in_words(@user.created_at) %> тому<br />
+            Рецептів: <%= @user.recipes.moderated.count %><br />
+            Коментарів: <%= @user.comments.moderated.count %><br />
+        </div>
+    </div>
+    
+</div>
+
+
+<h2 class="text-center">
+    Рецепти користувача <%= @user.username %>
+</h2>
+
+<div class="container text-center">
+    <div class="cooked-recipe-grid">
+        <% if current_user && @user.id == current_user.id %>
+            <% @user.recipes.each do |recipe| %>
+                <%= render partial: 'main/recipe', locals: { recipe: recipe } %>
+            <% end %>
+        <% else %>
+            <% @user.recipes.moderated.each do |recipe| %>
+                <%= render partial: 'main/recipe', locals: { recipe: recipe } %>
+            <% end %>
+        <% end %>
+    </div>
+</div>
+
+

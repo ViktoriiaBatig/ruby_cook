@@ -1,0 +1,20 @@
+<article class="cooked-recipe-card cooked-recipe">
+    <a href="/recipes/<%= recipe.slug %>" class="cooked-recipe-card-image" style="background-image:url(<%= recipe.image.url %>);">
+        <div class="cooked-recipe-card-likes">
+            <span class="green"><i class="fa fa-thumbs-up"></i> <%= recipe.likes_count %></span>
+            <span class="red"><i class="fa fa-thumbs-down"></i> <%= recipe.dislikes_count %></span>
+        </div>
+    </a>
+    
+    <div class="recipe-category">
+        <%= recipe.category.title %>
+    </div>
+
+    <div class="cooked-recipe-card-content">
+        <a href="/recipes/<%= recipe.slug %>" class="cooked-recipe-card-title"><%= recipe.title %></a>
+    </div>
+
+    <div class="cooked-recipe-card-meta">
+        <span class="cooked-recipe-card-comments"><i class="fa fa-comment"></i> <%= recipe.comments.moderated.count %> коментарів</span>
+    </div>
+</article>

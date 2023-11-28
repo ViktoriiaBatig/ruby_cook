@@ -1,0 +1,11 @@
+<div style="background: white; padding: 20px 0px; width: 100%; margin: 0; box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 0px;">
+    <div class="container container-fluid">
+
+        <nav class="breadcrumb-wrapper">
+            <%= render_breadcrumbs :separator => ' / ' %>
+        </nav>
+        <h3 style="font-family: 'Poppins', sans-serif; font-weight: 600; font-size: 26px;">
+            <%= yield :title %>
+        </h3>
+    </div>
+</div>

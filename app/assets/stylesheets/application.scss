@@ -1,0 +1,420 @@
+body {
+    background: #f8f8f8;
+}
+
+.background-white {
+    background: white;
+}
+
+.form-control:focus {
+    box-shadow: none;
+}
+.bg-primary {
+    background-color: #5d717a !important;
+}
+
+.nav-item {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.nav-link {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    span {
+        padding-left: 5px;
+    }
+}
+.fav-recipes span{
+    padding-left: 3px;
+}
+
+
+.navbar-nav {
+    margin-left: auto;
+}
+
+.fav-recipes {
+    background: #fb6333;
+    border-radius: 25px;
+    color: #ffffff;
+    padding: 5px 25px 6px 25px !important;
+    margin-right: 10px;
+}
+
+.navbar {
+    padding: 0px;
+}
+
+.background-peach {
+    background: #fff3e2;
+}
+
+.flex-center {
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-column {
+    flex-direction: column;
+}
+
+.text-grey {
+    color: #696969;
+}
+
+.search-form-main {
+    width: 600px;
+}
+
+.bold {
+    font-weight: bold;
+}
+
+.video-wrapper {
+    background: white;
+    padding: 5px;
+    margin: 5px;
+    width: 32%;
+}
+
+.videos-list {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    flex-direction: row;
+    width: 100%;
+}
+
+.video-thumbnail {
+    width: 100%;
+}
+
+.video-title {
+    font-size: 16px;
+    font-weight: bold;
+    word-wrap: break-word;
+    padding: 5px;
+    line-height: 19px;
+}
+
+
+.background-pattern {
+    background-color: #F7F6F3;
+    background-image: url(https://thatix.progressionstudios.com/wp-content/uploads/2020/03/pattern-home.jpg);
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.steps-block {
+    box-shadow: 0 0 #0000, 0 0 #0000, 0 1px 3px 0 #0000001a, 0 1px 2px -1px #0000001a;
+    background: white;
+    padding: 20px;
+    margin-bottom: 15px;
+}
+
+.mb-15 {
+    margin-bottom: 15px;
+}
+
+.comment {
+    display: flex;
+}
+
+.comment-body {
+    margin-left: 10px;
+    display: block;
+    width: 100%;
+    
+    a {
+        color: black;
+        text-decoration: none;
+        font-weight: bold;
+    }
+
+    .comment-date {
+        color: #939290;
+        font-size: 14px;
+        line-height: 14px;
+    }
+}
+
+.form-comment {
+    background: #fff9e9;
+    padding: 10px;
+}
+
+.box-block {
+    margin-top: 25px;
+    background: white;
+    padding: 25px;
+    border-radius: 5px;
+}
+
+.field {
+    margin-bottom: 10px;
+}
+
+.cooked-recipe-grid {
+    -webkit-transform: translate3d(0,0,0);
+    -moz-transform: translate3d(0,0,0);
+    transform: translate3d(0,0,0);
+    position: relative;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 3% -1.5%;
+    width: 103%;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.cooked-recipe-card {
+    width: 30.333%;
+    min-width: 30.333%;
+    box-shadow: 0 0 15px rgba(41,48,55,.03);
+    background: white;
+}
+
+.cooked-recipe a.cooked-recipe-card-image {
+    height: 260px;
+}
+
+.cooked-recipe-card-image {
+    background-size: cover;
+    background-position: center;
+    display: block;
+    margin: 0;
+    padding: 0;
+    height: 250px;
+    width: 100%;
+    position: relative;
+}
+
+.cooked-recipe-grid .cooked-recipe {
+    display: flex;
+    box-sizing: border-box;
+    margin: 0 1.5% 3%;
+    padding: 0 0 10px 0;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.cooked-recipe-card-content {
+    padding: 5px 35px 10px 35px;
+}
+
+.cooked-recipe-card-title {
+    color: #2e2f31;
+    font-size: 22px;
+    margin-bottom: 12px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.cooked-recipe-card-title:hover {
+    opacity: 0.8;
+}
+
+.cooked-recipe {
+    .cooked-recipe-card-meta {
+        font-size: 13px;
+        color: #848484;
+    }
+    
+    .fa-comment {
+        color: #81d7ff;
+    }
+}
+
+.cooked-recipe-card-image:hover {
+    opacity: 0.8;
+}
+
+.recipe-category {
+    background: #8BC34A;
+    border-radius: 25px;
+    padding: 4px 18px;
+    color: white;
+    display: inline-block;
+    margin: 15px 0px;
+}
+
+.cooked-recipe-excerpt {
+    border-color: #f89223;
+}
+.cooked-recipe-excerpt {
+    font-size: 18px;
+    border-left: 2px solid #f89223;
+    padding-left: 25px;
+    margin-top: 5px;
+    margin-bottom: 40px;
+}
+.cooked-recipe-excerpt {
+    display: block;
+    padding: 10px 20px;
+    margin: 20px 0 20px;
+    font-style: italic;
+    font-size: 18px;
+
+    p {
+        margin: 0;
+    }
+}
+
+.recipe-step {
+    display: flex;
+
+    p {
+        margin: 0;
+    }
+}
+
+
+.user-info {
+    display: flex;
+    align-items: center;
+}
+
+.user-info-meta {
+    margin-left: 15px;
+}
+
+.mb-20 {
+    margin-bottom: 20px;
+}
+
+.cooked-recipe-card-title {
+    line-height: 16px;
+}
+
+.mt-15 {
+    margin-top: 15px;
+}
+
+.nested-fields {
+    background: #deebf5;
+    padding: 15px 10px;
+    margin-bottom: 15px;
+    border-radius: 5px;
+}
+
+.like-button {
+    background-color: #4CAF50; /* Зеленый цвет для лайка */
+    color: white;
+    border-color: #4CAF50;
+
+    &:hover {
+        background-color: #4CAF50;
+        color: white;
+        border-color: #4CAF50;
+    }
+
+    &:active {
+        background-color: #4CAF50;
+        color: white;
+        border-color: #4CAF50;
+    }
+  }
+  
+  .dislike-button {
+    background-color: #FF5733; /* Красный цвет для дизлайка */
+    color: white;
+    border-color: #FF5733;
+
+    &:hover {
+        background-color: #FF5733;
+        color: white;
+        border-color: #FF5733;
+    }
+  }
+  
+  .new_like {
+    margin-right: 5px;
+  }
+
+  .mt-15 {
+    margin-top: 15px;
+  }
+
+  @media (max-width: 992px) {
+    .cooked-recipe-card {
+        width: 47%;
+        min-width: 47%;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .cooked-recipe-card {
+        width: 100%;
+        min-width: 100%;
+    }
+    .cooked-recipe-grid .cooked-recipe {
+        margin: 0;
+        padding: 0;
+    }
+
+    .cooked-recipe-grid {
+        padding: 0;
+        margin: 0;
+        width: 100%;
+    }
+}
+
+.cooked-recipe-card-likes {
+    position: absolute;
+    background: white;
+    padding: 5px 10px;
+    bottom: 0;
+    left: 0;
+}
+
+
+.green {
+    color: #5bcb60;
+}
+
+.red {
+    color: #ff756b;
+}
+
+.recipe-step-photo {
+    padding: 5px;
+    background-color: #bad0e1;
+    margin-left: 10px;
+    border-radius: 5px;
+}
+
+.comment-text {
+    background: #fffce2;
+    width: 100%;
+    display: block;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 5px;
+}
+
+.admin-panel {
+    background: #4CAF50;
+    border-radius: 25px;
+    color: #ffffff;
+    padding: 5px 25px 6px 25px !important;
+    margin-right: 10px;
+    font-weight: bold;
+  }
+
+  .background-wheat {
+    text-align: center;
+    padding: 20px;
+    background: #fffce2;
+    border: 2px solid #f3c98b;
+  }
+
+.recipe-author {
+    color: white;
+    
+}

@@ -1,0 +1,9 @@
+<% content_for :title, "#{@title}" %>
+
+<div style="margin-top: 20px; width: 100%;">
+    <iframe width="100%" height="615" src="https://www.youtube.com/embed/<%= params[:id] %>" frameborder="0" allowfullscreen></iframe>
+</div>
+
+<div class="box-block">
+    <%= @description %>
+</div>

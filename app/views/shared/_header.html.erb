@@ -1,0 +1,60 @@
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+        <div class="container">
+            <a class="navbar-brand" href="/">
+              Cooking
+            </a>
+
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDarkDropdown" aria-controls="navbarNavDarkDropdown" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+              <div class="collapse navbar-collapse" id="navbarNavDarkDropdown">
+                <ul class="navbar-nav">
+                  
+                  <% if signed_in? %>
+                  <% if current_user.admin? %>
+                    <li class="nav-item">
+                      <a class="nav-link admin-panel" href="/admin">
+                        <span>Панель адміністратора</span>
+                      </a>
+                    </li>
+                  <% end %>
+
+                  <li class="nav-item">
+                    <a class="nav-link fav-recipes" href="/favorites">
+                      <i class="fa-regular fa-heart"></i>
+                      <span>Обрані рецепти</span>
+                    </a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                      <% user_avatar = current_user.avatar.url || "/user.png" %>
+                      <img src="<%= user_avatar %>" width="35" height="35" class="rounded-circle">
+                      <span>Мій профіль (<%= current_user.username %>)</span>
+                    </a>
+                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                      <li><a class="dropdown-item" href="/recipes/new">Додати рецепт</a></li>
+                      <li><a class="dropdown-item" href="/users/<%= current_user.username %>">Мої рецепти</a></li>
+                      <li><a class="dropdown-item" href="/users/edit">Редугвати профіль</a></li>
+                      <li><hr class="dropdown-divider"></li>
+                      <li><%= link_to "Вихід", destroy_user_session_path, :method => :delete, class: "dropdown-item" %></li>
+                    </ul>
+                  </li>
+                  <% else %>
+                    <li class="nav-item">
+                      <a class="nav-link" href="/users/sign_in">
+                        Вхід
+                      </a>
+                     </li>
+                     <li class="nav-item">
+                      <a class="nav-link" href="/users/sign_up">
+                        Реєстрація
+                      </a>
+                     </li>
+                  <% end %>
+                </ul>
+              </div>
+  
+        </div>
+    </nav>
+  </header>

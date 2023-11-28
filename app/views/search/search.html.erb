@@ -1,0 +1,58 @@
+<% if params["search_type"] && params[:search_type] == "videos" %>
+<% content_for :title, "Пошук відеорецептів: #{params[:q]}" %>
+<div class="videos-list" style="display: flex; justify-content: center; flex-wrap: wrap;">
+    <% @videos.each do |video| %>
+        <div class="video-wrapper" style="">
+            <a href="/videos/<%= video[:video_id] %>" style="color: black; text-decoration: none;">
+                <img class="video-thumbnail" src="<%= video[:thumbnail_url] %>" alt="<%= video[:title] %>">
+                <div class="video-title"><%= video[:title] %></div>
+            </a>
+        </div>
+    <% end %>
+</div>
+<% else %>
+    <% content_for :title, "Пошук рецептів: #{params[:q]}" %>
+
+    <div class="container-fluid p-0 text-center text-grey">
+        <div class="container">
+            <div class="p-5 d-flex flex-center flex-column">
+                <form action="/search" id="search-form">
+                    <div class="input-group">
+                        <input type="search" placeholder="Що приготуємо?" name="q" value="<%= params[:q] %>" aria-describedby="button-addon1" class="form-control border-0 bg-light bg-light rounded rounded-pill shadow-sm mb-4 search-form-main">
+                        <div class="input-group-append">
+                            <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <div class="radio-buttons">
+                            <label for="search-recipes">
+                                <input type="radio" id="search-recipes" name="search_type" value="recipes" checked>
+                                Пошук по рецептам
+                            </label>
+                        
+                            <label for="search-videos">
+                                <input type="radio" id="search-videos" name="search_type" value="videos">
+                                Пошук по відео
+                            </label>
+                        </div>                        
+                    </div>
+                </form>
+            </div>
+        </div>  
+    </div>
+
+    <div class="container p-3 text-center">
+        <% if @recipes.size > 0 %>
+        <div class="cooked-recipe-grid">
+            <% @recipes.each do |recipe| %>
+                <% begin %>
+                    <%= render partial: 'main/recipe', locals: { recipe: recipe } %>
+                <% rescue %>
+                <% end %>
+            <% end %>
+        </div>
+        <% else %>
+            <h5>Рецептів не знайдено</h5>
+        <% end %>
+    </div>
+<% end %>

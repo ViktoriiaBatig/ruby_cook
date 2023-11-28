@@ -1,0 +1,11 @@
+<div class="nested-fields">
+  <%= f.hidden_field :position, value: 1.to_s %>
+  <div style="display: flex; flex-direction: row; width: 100%;">
+    <%= f.text_area :description, class: "form-control" %>
+    <div class="recipe-step-photo">
+        <%= f.label "Фото" %><br>
+        <%= f.file_field :image %>
+    </div>
+    <%= link_to_remove_association "X", f, class: "btn btn-default" %>
+  </div>
+</div>

@@ -1,0 +1,144 @@
+<%= content_for :title, @recipe.title %>
+
+<div>
+    <span class="recipe-category">
+        <%= @recipe.category.title %>
+    </span>
+    
+    <span class="recipe-category">
+        Автор: <a href="/users/<%= @recipe.user.username %>" class="recipe-author"><%= @recipe.user.username %></a>
+    </span>
+</div>
+
+
+<p>
+    <%= image_tag @recipe.image.url, width: '300px' %>
+</p>
+
+<div class="cooked-recipe-excerpt cooked-clearfix">
+    <p>
+        <%= @recipe.description %>
+    </p>
+</div>
+
+<div class="steps-block rounded" style="display: flex;">
+    <% if current_user && current_user.favorites.where(recipe: @recipe).empty? %>
+    <%= form_for([@recipe, @recipe.favorites.build], remote: true) do |f| %>
+        <button type="submit" class="btn btn-primary favorite-button">
+        Додати в обране
+        </button>
+    <% end %>
+    <% elsif current_user %>
+    <%= form_for([@recipe, @recipe.favorites.find_by(user: current_user)], html: { method: :delete }, remote: true) do |f| %>
+        <button type="submit" class="btn btn-danger favorite-button">
+        Видалити із обраного
+        </button>
+    <% end %>
+    <% end %>
+</div>
+
+<div class="steps-block rounded" style="display: flex;">
+    <%= form_for([@recipe, @recipe.likes.build(like_type: 'like')]) do |f| %>
+    <%= f.hidden_field :like_type %>
+    <button type="submit" class="btn like-button">
+        <i class="fa-solid fa-thumbs-up"></i> <%= @recipe.likes_count %> Лайків
+    </button>
+    <% end %>
+
+    <%= form_for([@recipe, @recipe.likes.build(like_type: 'dislike')]) do |f| %>
+    <%= f.hidden_field :like_type %>
+    <button type="submit" class="btn dislike-button">
+        <i class="fa-solid fa-thumbs-down"></i> <%= @recipe.dislikes_count %> Дизлайків
+    </button>
+    <% end %>
+</div>
+
+<div class="steps-block rounded ">
+    <h2>Інгредієнти</h2>
+    <p>
+        <%= @recipe.ingredients.split("\r\n").join("<br>").html_safe %>
+    </p>
+</div>
+
+<div class="steps-block rounded">
+    <% @recipe.recipe_steps.each_with_index do |step, index| %>
+        <div class="recipe-step">
+            <% if step.image.url %>
+                <img src="<%= step.image.url %>" style="width: 150px; margin-right: 20px;" />
+            <% end %>
+            <p><%= step.description %></p>
+        </div>
+        <hr />
+    <% end %>
+</div>
+
+<div class="steps-block">
+    <div id="comments_section" class="flex flex-col space-y-rg bg-cookpad-white p-rg mb-sm md:mb-rg md:rounded-lg md:shadow p-rg print:hidden">
+        <div class="flex">
+            <h4 class="flex items-center flex-grow text-cookpad-20 text-cookpad-gray-700 font-semibold">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24" class="mr-sm mise-icon mise-icon-comment"><path stroke="currentColor" stroke-width="1.5" d="M16 4H8a4 4 0 0 0-4 4v4.8a4 4 0 0 0 4 4h7.143a4 4 0 0 1 2.829 1.172l1.516 1.516a.3.3 0 0 0 .512-.212V8a4 4 0 0 0-4-4Z"></path></svg>
+            <span>Коментарі</span>
+            <span class="text-cookpad-gray-500 ml-xs" id="comments_count" data-count-target="count"> (<%= @recipe.comments.moderated.count %>) </span>
+        </h4>
+        </div>
+      
+      <div id="comments">
+        <% @recipe.comments.each do |comment| %>
+        <% next if comment.new_record? %>
+
+            <% if comment.user.comment_moderation == false
+                if current_user && comment.user.id == current_user.id
+            
+                else
+                    next
+                end
+            end %>
+
+            <div class="comment">
+                <picture>
+                    <img src="<%= comment.user&.avatar&.url || 'https://global-web-assets.cpcdn.com/assets/guest_user-411965b370bbbfc1433c4478633d4974e180b506f29555ff58032b0ab04c5b56.png' %>" style="width: 35px; height: 35px; border-radius: 50%;"/>
+                </picture>
+                <div class="comment-body">
+                    <a href="/users/<%= comment.user.username %>"><%= comment.user.username %></a>
+                    <div class="comment-date">
+                        <span><%= time_ago_in_words(comment.created_at) %></span>
+                    </div>
+                    <div class="comment-text">
+                        <%= comment.body %>
+
+                        <% if comment.image? %>
+                            <br />
+                            <%= image_tag comment.image.url, width: '200px' %>
+                        <% end %>
+                    </div>
+                    
+                </div>
+            </div>
+
+            <hr />
+        <% end %>
+      </div>
+
+      <% if signed_in? %>
+        <div id="comment_section">
+            <div class="pt-rg text-cookpad-12 xs:text-cookpad-14">
+                <div class="flex items-center">
+                <div class="form-comment">
+                    <%= form_with(model: [@recipe, @recipe.comments.build], local: true) do |form| %>
+                        <%= form.text_area :body, placeholder: "Текст коментаря", class: "form-control" %>
+                        <label>Фото</label><br>
+                        <%= form.file_field :image, required: true %><br><br>
+                        <%= form.submit "Опублікувати коментар", class: "btn btn-primary" %>
+                    <% end %>
+                </div>
+                </div>
+            </div>
+        </div>
+    <% else %>
+        <p class="background-wheat rounded">
+            <a href="/users/sign_up">Зарєєструйтесь</a>, щоб залишити коментар
+        </p>
+    <% end %>
+
+</div>
+</div>

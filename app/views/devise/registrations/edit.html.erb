@@ -1,0 +1,63 @@
+<%= content_for :title, "Редагувати профіль" %>
+
+<div class="box-block">
+<%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+  <%= render "devise/shared/error_messages", resource: resource %>
+
+  <div class="field">
+    <%= f.label :email %><br />
+    <!-- :email field with disabled: true attributes -->
+    <%= f.email_field :email, disabled: true, class: 'form-control'  %>
+  </div>
+
+  <div class="field">
+    <%= f.label :avatar, "Виберіть ваш аватар" %><br>
+    <% if @user.avatar? %>
+      <%= image_tag @user.avatar.url, width: '100px' %><br>
+    <% end %>
+    <%= f.file_field :avatar %>
+    
+  </div>
+
+  <div class="field">
+    <%= f.label :username, "Нікнейм" %><br />
+    <%= f.text_field :username, class: 'form-control' %>
+  </div>
+
+  <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+    <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :password, "Новий пароль" %> <i>(залиште порожнім, якщо ви не хочете його змінювати)</i><br />
+    <%= f.password_field :password, autocomplete: 'new-password', class: 'form-control' %>
+    <% if @minimum_password_length %>
+      <br />
+      <em><%= @minimum_password_length %> мінімум символів</em>
+    <% end %>
+  </div>
+
+  <div class="field">
+    <%= f.label :password_confirmation, "Підтвердження паролю" %><br />
+    <%= f.password_field :password_confirmation, class: 'form-control' %>
+  </div>
+
+  <div class="field">
+    <%= f.label :current_password, "Поточний пароль" %> <i>(нам потрібен ваш поточний пароль, щоб підтвердити ваші зміни)</i><br />
+    <%= f.password_field :current_password, class: 'form-control' %>
+  </div>
+
+  <br>
+  <div class="actions">
+    <%= f.submit "Зберегти зміни", class: "btn btn-primary" %>
+  </div>
+<% end %>
+
+<% if false %>
+  <h3>Cancel my account</h3>
+
+  <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+
+  <%= link_to "Back", :back %>
+<% end %>
+</div>

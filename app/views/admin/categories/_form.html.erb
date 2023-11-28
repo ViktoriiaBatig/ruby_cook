@@ -1,0 +1,25 @@
+<%= form_with(model: [:admin, category], local: true) do |form| %>
+  <div class="form-group">
+    <%= form.label "Назва" %>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Опис" %>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Фото" %>
+    <%= form.file_field :image, class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
+    <%= form.label "Батьківська категорія" %>
+    <%= form.collection_select :parent_id, Category.all, :id, :title, { include_blank: true }, class: 'form-control' %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit "Зберегти", class: 'btn btn-primary' %>
+  </div>
+<% end %>

@@ -1,0 +1,47 @@
+<h1>Рецепти</h1>
+
+<a href="/admin/recipes" class="btn btn-primary">
+  Рецепти <span class="badge badge-light"> <%= Recipe.moderated.count %> </span>
+</a>
+
+<a href="/admin/recipes?type=unmoderated" class="btn btn-primary">
+  Модерація <span class="badge badge-light"> <%= Recipe.unmoderated.count %></span>
+</a>
+
+<br><br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Фото</th>
+      <th>Назва</th>
+      <th>Опис</th>
+      <th>Дата</th>
+      <th>Користувач</th>
+      <th>Дії</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @recipes.each do |recipe| %>
+      <tr>
+        <td>
+          <% if recipe.image.url %>
+            <%= image_tag recipe.image.url, width: '90px' %>
+          <% end %>
+        </td>
+        <td><%= recipe.title %></td>
+        <td style="width: 60%;"><%= recipe.description %></td>
+        <td><%= recipe.created_at %></td>
+        <td><a href="/users/<%= recipe.user.username %>"><%= recipe.user.username %></a></td>
+        <td>
+          <!-- button for publuish recipe and allow user to publish recipes -->
+          <% if recipe.user.recipe_moderation == false %>
+            <%= link_to 'Опублікувати', publish_admin_recipe_path(recipe), method: :post, class: 'btn btn-success' %>
+          <% end %>
+          <%= link_to 'Редагувати', edit_admin_recipe_path(recipe), class: 'btn btn-warning' %>
+          <%= link_to 'Видалити', admin_recipe_path(recipe), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

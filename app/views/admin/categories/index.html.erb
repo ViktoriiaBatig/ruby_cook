@@ -1,0 +1,26 @@
+<h1>Категорії</h1>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Назва</th>
+      <th>Опис</th>
+      <th>Дата</th>
+      <th>Дії</th>
+  </thead>
+  <tbody>
+    <% @categories.each do |category| %>
+      <tr>
+        <td><%= category.title %></td>
+        <td><%= category.description %></td>
+        <td><%= category.created_at %></td>
+        <td>
+          <%= link_to 'Редагування', edit_admin_category_path(category), class: 'btn btn-warning' %>
+          <%= link_to 'Видалити', admin_category_path(category), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to '+ Нова категорія', new_admin_category_path, class: 'btn btn-success' %>

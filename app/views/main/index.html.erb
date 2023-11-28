@@ -1,0 +1,42 @@
+<div class="container-fluid p-0 background-pattern text-center text-grey">
+    <div class="container">
+        <div class="p-5 d-flex flex-center flex-column">
+            <h2 class="display-6 bold">Пошук рецептів</h2>
+            <p class="lead">Знайдіть смачні рецепти для приготування</p>
+            <div class="p-1">
+                <form action="/search" id="search-form">
+                    <div class="input-group">
+                        <input type="search" placeholder="Що приготуємо?" name="q" aria-describedby="button-addon1" class="form-control border-0 bg-light bg-light rounded rounded-pill shadow-sm mb-4 search-form-main">
+                        <div class="input-group-append">
+                            <button id="button-addon1" type="submit" class="btn btn-link text-primary"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                    <div class="mt-2">
+                        <div class="radio-buttons">
+                            <label for="search-recipes">
+                                <input type="radio" id="search-recipes" name="search_type" value="recipes" checked>
+                                Пошук по рецептам
+                            </label>
+                        
+                            <label for="search-videos">
+                                <input type="radio" id="search-videos" name="search_type" value="videos">
+                                Пошук по відео
+                            </label>
+                        </div>                        
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>  
+</div>
+
+
+<div class="container p-3 text-center">
+    <h2>Рецепти користувачів</h2>
+
+    <div class="cooked-recipe-grid">
+            <% @recipes.each do |recipe| %>
+                <%= render partial: 'recipe', locals: { recipe: recipe } %>
+            <% end %>
+    </div>
+</div>

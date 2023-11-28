@@ -1,0 +1,18 @@
+
+<% content_for :title, "Обрані рецепти" %>
+
+<h2 class="text-center mt-15">
+    Обрані рецепти
+</h2>
+
+<% if @favorite_recipes.empty? %>
+  <p>Ви ще не додали жодного рецепту в обране.</p>
+<% else %>
+    <div class="container text-center">
+        <div class="cooked-recipe-grid">
+        <% @favorite_recipes.each do |recipe| %>
+            <%= render partial: 'main/recipe', locals: { recipe: recipe } %>
+        <% end %>
+        </div>
+    </div>
+<% end %>

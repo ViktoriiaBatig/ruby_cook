@@ -1,0 +1,48 @@
+<% content_for :title, "Створення нового рецепту" %>
+
+<div class="steps-block mt-15">
+    <%= form_for @recipe do |f| %>
+        <p>
+            <%= f.label :title, "Назва рецепту" %><br>
+            <%= f.text_field :title, class: "form-control" %>
+        </p>
+
+        <p>
+            <%= f.label :image, "Фото рецепта" %><br>
+            <%= f.file_field :image %>
+        </p>
+
+        <p>
+            <%= f.label :ingredients, "Інгредієнти (кожен на новій строчці)" %><br>
+            <%= f.text_area :ingredients, value: "", class: "form-control" %>
+        </p>
+
+        <p>
+            <%= f.label :description, "Короткий опис рецепту" %><br>
+            <%= f.text_area :description, class: "form-control" %>
+        </p>
+
+        <p>
+            <%= f.label :category_id, "Виберіть категорію" %><br>
+            <%= f.select :category_id, options_for_select(@categories.map { |c| [c.title, c.id] }), {}, class: "form-control"  %>
+        </p>
+
+        <p>
+            <%= f.label :recipe_steps, "Шаги рецепту" %><br>
+            <%= f.fields_for :recipe_steps do |step_form| %>
+                <%= render 'recipes/recipe_step_fields', f: step_form %>
+            <% end %>
+        </p>
+        
+        <div class="actions" data-step-index="0">
+            <%= link_to_add_association "Додати шаг", f, :recipe_steps, class: 'btn btn-primary' %>
+        </div>
+
+        <p>
+            Шаги
+        </p>
+        
+        <%= f.submit "Створити рецепт", class: "btn btn-primary" %>
+        </p>
+    <% end %>
+</div>

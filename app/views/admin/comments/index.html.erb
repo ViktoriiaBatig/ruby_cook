@@ -1,0 +1,38 @@
+<h1>Коментарі</h1>
+
+<a href="/admin/comments" class="btn btn-primary">
+  Опубліковані <span class="badge badge-light"> <%= Comment.moderated.count %> </span>
+</a>
+
+<a href="/admin/comments?type=unmoderated" class="btn btn-primary">
+  На модерації <span class="badge badge-light"> <%= Comment.unmoderated.count %></span>
+</a>
+
+<br><br>
+
+<table class="table">
+  <thead>
+    <tr>
+      <th>Фото</th>
+      <th>Коментар</th>
+      <th>Дата</th>
+      <th>Дії</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @comments.each do |comment| %>
+      <tr>
+        <td><img src="<%= comment.image.url %>" style="width: 100px;"/></td>
+        <td><%= comment.body %></td>
+        <td><%= comment.created_at %></td>
+        <td>
+          <% if comment.user.comment_moderation == false %>
+            <%= link_to 'Опублікувати', publish_admin_comment_path(comment), method: :post, class: 'btn btn-success' %>
+          <% end %>
+          <%= link_to 'Редагувати', edit_admin_comment_path(comment), class: 'btn btn-warning' %>
+          <%= link_to 'Видалити', admin_comment_path(comment), method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger' %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
